@@ -54,7 +54,7 @@ class asyncThreader():
     def clear_dead_threads(self):
         if self.running_threads:
             for t in self.running_threads:
-                if not t.isAlive():
+                if not t.is_alive():
                     t.handled = True
             self.running_threads = [t for t in self.running_threads if not t.handled]
 
@@ -71,7 +71,7 @@ class asyncThreader():
                 self.start_threads_and_move_to_running(self.low_priority_threads)
 
         if self.unique:
-            if not self.unique.isAlive():
+            if not self.unique.is_alive():
                 if self.unique_threads:
                     self.do_next_unique()
                 else:
@@ -121,7 +121,7 @@ class asyncThreader():
     def is_unique_running(self):
         try:
             if self.unique:
-                return self.unique.isAlive()
+                return self.unique.is_alive()
         except:
             pass
 
